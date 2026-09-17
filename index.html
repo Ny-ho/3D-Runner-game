@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>MERGED — Python Quiz Runner 3D (levels + biomes)</title>
+  <link rel="stylesheet" href="style.css?v=3" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.152.2/three.min.js"></script>
+</head>
+<body>
+  <!-- Full-screen 3D canvas mounts here -->
+  <div id="game"></div>
+
+  <!-- Floating HUD (no panels taking space — game fills entire page) -->
+  <div id="ui">
+    <div id="question-banner"><span id="question-text">Pick a level to start…</span></div>
+    <div id="hud-hearts">❤️❤️❤️</div>
+    <div id="hud-pauses">☕ 3</div>
+    <div id="hud-streak">🔥 x0 · Dirty</div>
+    <div id="streak-plus"></div>
+    <div id="hud-biome">⛈ STORM PLAINS</div>
+    <div id="hud-next">▸🏜 2</div>
+    <div id="hud-slow" class="hidden">🐢 SLOW</div>
+    <div id="hud-sound" title="Sound on/off (M)">🔊</div>
+    <div id="toast" class="hidden"></div>
+    <div id="flash"></div>
+    <div id="build-tag">MERGED · S1+S2</div>
+
+    <!-- LEVEL SELECT MENU -->
+    <div id="menu">
+      <div class="panel">
+        <div class="m-title">PYTHON QUIZ RUNNER <span>3D</span></div>
+        <div id="level-list"></div>
+        <label class="slow-row" title="Only slows down near answer gates so you can read.">
+          <span class="switch">
+            <input type="checkbox" id="slow-toggle" />
+            <span class="track"><span class="thumb"></span></span>
+          </span>
+          <span class="slow-label">🐢 <b>Slow near gates</b></span>
+        </label>
+        <div class="m-how">
+          <b>◀ ▶</b> / <b>A D</b> move &nbsp;•&nbsp; <b>SPACE</b> jump &nbsp;•&nbsp; <b>ESC</b> ☕ (3 per run) &nbsp;•&nbsp; correct = <b>+100 +1❤️</b> &nbsp;•&nbsp; 🌍 biomes rotate
+        </div>
+        <div id="reset-progress">⟲ reset progress</div>
+      </div>
+      <button id="endless-card">
+        <span class="e-big">♾</span>
+        <span class="e-title">CHALLENGE YOURSELF</span>
+        <span class="e-sub">endless • open to all</span>
+      </button>
+    </div>
+
+    <!-- PAUSE -->
+    <div id="pauseMenu" class="hidden">
+      <div class="panel small">
+        <div class="p-title">☕ PAUSED</div>
+        <div class="p-sub" id="pause-info">☕ left: 2 / 3</div>
+        <label class="slow-row" title="Only slows down near answer gates so you can read.">
+          <span class="switch">
+            <input type="checkbox" id="slow-toggle-pause" />
+            <span class="track"><span class="thumb"></span></span>
+          </span>
+          <span class="slow-label">🐢 <b>Slow near gates</b></span>
+        </label>
+        <div class="pause-btns">
+          <button class="btn" id="resume-btn">▶ RESUME (ESC)</button>
+          <button class="btn ghost" id="pause-levels-btn">MAIN MENU</button>
+        </div>
+        <div class="p-hint">Full ❤️ + correct answer = +1 ☕ (max 3 each).</div>
+      </div>
+    </div>
+
+    <!-- GAME OVER -->
+    <div id="gameover" class="hidden">
+      <div class="go-title">GAME OVER</div>
+      <div class="go-score" id="go-score">Final score: 0</div>
+      <div class="go-row">
+        <button class="btn" id="retry-btn">↻ RETRY LEVEL</button>
+        <button class="btn ghost" id="go-levels-btn">LEVELS</button>
+      </div>
+      <div class="go-hint">Press R to retry</div>
+    </div>
+
+    <!-- LEVEL COMPLETE -->
+    <div id="winMenu" class="hidden">
+      <div class="panel small">
+        <div class="w-title">🏆 LEVEL CLEAR!</div>
+        <div class="w-sub" id="win-score">Score: 0</div>
+        <div class="go-row">
+          <button class="btn" id="next-btn">NEXT LEVEL ▶</button>
+          <button class="btn ghost" id="win-levels-btn">LEVELS</button>
+        </div>
+        <div class="p-hint">Press N for next level • R to replay</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/main.js?v=3"></script>
+</body>
+</html>
